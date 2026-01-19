@@ -1,0 +1,804 @@
+2025-12-05 10:10:44 | INFO     | ================================================================================
+2025-12-05 10:10:44 | INFO     |   DISEASE-STRATIFIED MICROBIOME-METABOLOME NETWORK ANALYSIS
+2025-12-05 10:10:44 | INFO     | ================================================================================
+2025-12-05 10:10:44 | INFO     | Datasets: 6
+2025-12-05 10:10:44 | INFO     | Max parallel workers: 20
+2025-12-05 10:10:44 | INFO     | Output directory: /mnt/gpuws/kardokhk/idea_16/output/results
+2025-12-05 10:10:44 | INFO     | 
+2025-12-05 10:10:44 | INFO     | ================================================================================
+2025-12-05 10:10:44 | INFO     |   DATASET 1/6: YACHIDA_CRC_2019
+2025-12-05 10:10:44 | INFO     | ================================================================================
+2025-12-05 10:10:44 | INFO     |   Disease: Colorectal Cancer
+2025-12-05 10:10:44 | INFO     |   Control groups: ['Healthy']
+2025-12-05 10:10:44 | INFO     |   Disease groups: ['Stage_0', 'Stage_I_II', 'Stage_III_IV', 'HS', 'MP']
+2025-12-05 10:10:44 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:44 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-05 10:10:44 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |   Loaded microbiome: (347, 57702)
+2025-12-05 10:10:49 | INFO     |   Loaded metabolites: (347, 450)
+2025-12-05 10:10:49 | INFO     |   Loaded metadata: (347, 14)
+2025-12-05 10:10:49 | INFO     |   Common samples: 347
+2025-12-05 10:10:49 | INFO     |   Data type: shotgun
+2025-12-05 10:10:49 | INFO     |   Stratified samples: 127 control, 220 disease
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |  Phase 2: Filter Features
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |     Species: 57702 → 10325 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-05 10:10:49 | INFO     |     Metabolites: 450 → 277 (missing<=50%, prevalence>=15%)
+2025-12-05 10:10:49 | INFO     |   Reduced correlation tests from 25,965,900 to 2,860,025 (89.0% reduction)
+2025-12-05 10:10:49 | DEBUG    |   Cleared raw data from memory
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |  Phase 3: Transform Data
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |   Transforming data...
+2025-12-05 10:10:49 | DEBUG    |     Standardized 10325 species names
+2025-12-05 10:10:49 | INFO     |     CLR transform: mean=0.000, std=0.824
+2025-12-05 10:10:49 | DEBUG    |     No missing values to impute
+2025-12-05 10:10:49 | INFO     |     Z-score: mean=-0.000, std=1.001
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-05 10:10:49 | INFO     | ------------------------------------------------------------
+2025-12-05 10:10:49 | INFO     |   Processing control group...
+2025-12-05 10:10:49 | INFO     |     Samples: 127
+2025-12-05 10:10:49 | INFO     |   Computing 10325 species × 277 metabolites = 2,860,025 correlations
+2025-12-05 10:10:49 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 10:12:02 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 10:12:06 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 10:13:13 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 10:13:21 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 10:14:22 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 10:14:35 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 10:15:27 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 10:15:42 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 10:16:28 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 10:16:47 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 10:16:48 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 10:16:51 | INFO     |   Computed 2,860,025 raw associations
+2025-12-05 10:16:51 | INFO     |   Applying FDR correction...
+2025-12-05 10:16:52 | INFO     |   Significant associations (FDR < 0.1): 303,049 (10.60%)
+2025-12-05 10:16:52 | INFO     |     Positive: 166,723 (55.0%), Negative: 136,326 (45.0%)
+2025-12-05 10:16:52 | INFO     |     Mean |ρ|: 0.297
+2025-12-05 10:16:52 | INFO     |   Building network with 114,603 edges (|ρ| ≥ 0.3)
+2025-12-05 10:16:58 | INFO     |   Network: 8000 nodes (7730 species, 270 metabolites), 114603 edges
+2025-12-05 10:16:58 | INFO     |     Positive edges: 59361 (51.8%)
+2025-12-05 10:16:58 | INFO     |     Negative edges: 55242 (48.2%)
+2025-12-05 10:16:58 | INFO     |     Density: 0.0036
+2025-12-05 10:16:58 | INFO     |     Connected components: 8
+2025-12-05 10:16:59 | INFO     |     Largest component: 7985 nodes, 114595 edges
+2025-12-05 10:16:59 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 10:17:01 | INFO     |   Found 17 modules (modularity=0.249)
+2025-12-05 10:17:02 | INFO     |   Filtering to 11 modules with ≥5 nodes
+2025-12-05 10:17:02 | INFO     |   Module summary:
+2025-12-05 10:17:02 | INFO     |     Avg nodes per module: 724.5
+2025-12-05 10:17:02 | INFO     |     Avg species per module: 701.2
+2025-12-05 10:17:02 | INFO     |     Avg metabolites per module: 23.4
+2025-12-05 10:17:02 | INFO     |   Identifying keystone species...
+2025-12-05 10:17:02 | INFO     |   Computing centrality metrics for 7722 species...
+2025-12-05 10:17:10 | INFO     |   Identified 819 top keystone species (score ≥ 0.005)
+2025-12-05 10:17:10 | INFO     |     Mean keystone score: 0.002
+2025-12-05 10:17:10 | INFO     | ------------------------------------------------------------
+2025-12-05 10:17:10 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-05 10:17:10 | INFO     | ------------------------------------------------------------
+2025-12-05 10:17:10 | INFO     |   Processing disease group...
+2025-12-05 10:17:10 | INFO     |     Samples: 220
+2025-12-05 10:17:10 | INFO     |   Computing 10325 species × 277 metabolites = 2,860,025 correlations
+2025-12-05 10:17:10 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 10:18:19 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 10:18:20 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 10:19:19 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 10:19:21 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 10:20:10 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 10:20:13 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 10:20:58 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 10:21:03 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 10:21:47 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 10:21:50 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 10:21:52 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 10:21:56 | INFO     |   Computed 2,860,025 raw associations
+2025-12-05 10:21:56 | INFO     |   Applying FDR correction...
+2025-12-05 10:21:59 | INFO     |   Significant associations (FDR < 0.1): 531,608 (18.59%)
+2025-12-05 10:21:59 | INFO     |     Positive: 293,946 (55.3%), Negative: 237,662 (44.7%)
+2025-12-05 10:21:59 | INFO     |     Mean |ρ|: 0.234
+2025-12-05 10:22:00 | INFO     |   Building network with 85,769 edges (|ρ| ≥ 0.3)
+2025-12-05 10:22:04 | INFO     |   Network: 5673 nodes (5481 species, 192 metabolites), 85769 edges
+2025-12-05 10:22:04 | INFO     |     Positive edges: 43937 (51.2%)
+2025-12-05 10:22:04 | INFO     |     Negative edges: 41832 (48.8%)
+2025-12-05 10:22:04 | INFO     |     Density: 0.0053
+2025-12-05 10:22:04 | INFO     |     Connected components: 9
+2025-12-05 10:22:04 | INFO     |     Largest component: 5653 nodes, 85757 edges
+2025-12-05 10:22:05 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 10:22:06 | INFO     |   Found 11 modules (modularity=0.264)
+2025-12-05 10:22:06 | INFO     |   Filtering to 9 modules with ≥5 nodes
+2025-12-05 10:22:06 | INFO     |   Module summary:
+2025-12-05 10:22:06 | INFO     |     Avg nodes per module: 627.4
+2025-12-05 10:22:06 | INFO     |     Avg species per module: 607.2
+2025-12-05 10:22:06 | INFO     |     Avg metabolites per module: 20.2
+2025-12-05 10:22:06 | INFO     |   Identifying keystone species...
+2025-12-05 10:22:06 | INFO     |   Computing centrality metrics for 5469 species...
+2025-12-05 10:22:11 | INFO     |   Identified 561 top keystone species (score ≥ 0.008)
+2025-12-05 10:22:11 | INFO     |     Mean keystone score: 0.003
+2025-12-05 10:22:11 | INFO     | ------------------------------------------------------------
+2025-12-05 10:22:11 | INFO     |  Phase 12: Differential Analysis
+2025-12-05 10:22:11 | INFO     | ------------------------------------------------------------
+2025-12-05 10:22:43 | INFO     |   Depleted in disease: 1141 species
+2025-12-05 10:22:43 | INFO     |   Enriched in disease: 1011 species
+2025-12-05 10:22:43 | INFO     | ------------------------------------------------------------
+2025-12-05 10:22:43 | INFO     |  Phase 13: Save Results
+2025-12-05 10:22:43 | INFO     | ------------------------------------------------------------
+2025-12-05 10:22:59 | INFO     |   Saved differential analysis results
+2025-12-05 10:22:59 | INFO     | ✓ Dataset completed in 735.2s
+2025-12-05 10:22:59 | INFO     | ================================================================================
+2025-12-05 10:22:59 | INFO     |   DATASET 2/6: ERAWIJANTARI_GASTRIC_CANCER_2020
+2025-12-05 10:22:59 | INFO     | ================================================================================
+2025-12-05 10:22:59 | INFO     |   Disease: Gastric Cancer
+2025-12-05 10:22:59 | INFO     |   Control groups: ['Healthy']
+2025-12-05 10:22:59 | INFO     |   Disease groups: ['Gastrectomy']
+2025-12-05 10:22:59 | INFO     | ------------------------------------------------------------
+2025-12-05 10:22:59 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-05 10:22:59 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |   Loaded microbiome: (96, 48243)
+2025-12-05 10:23:01 | INFO     |   Loaded metabolites: (96, 524)
+2025-12-05 10:23:01 | INFO     |   Loaded metadata: (96, 51)
+2025-12-05 10:23:01 | INFO     |   Common samples: 96
+2025-12-05 10:23:01 | INFO     |   Data type: shotgun
+2025-12-05 10:23:01 | INFO     |   Stratified samples: 54 control, 42 disease
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |  Phase 2: Filter Features
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |     Species: 48243 → 8141 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-05 10:23:01 | INFO     |     Metabolites: 524 → 253 (missing<=50%, prevalence>=15%)
+2025-12-05 10:23:01 | INFO     |   Reduced correlation tests from 25,279,332 to 2,059,673 (91.9% reduction)
+2025-12-05 10:23:01 | DEBUG    |   Cleared raw data from memory
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |  Phase 3: Transform Data
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |   Transforming data...
+2025-12-05 10:23:01 | DEBUG    |     Standardized 8141 species names
+2025-12-05 10:23:01 | INFO     |     CLR transform: mean=0.000, std=0.938
+2025-12-05 10:23:01 | DEBUG    |     No missing values to impute
+2025-12-05 10:23:01 | INFO     |     Z-score: mean=0.000, std=1.005
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-05 10:23:01 | INFO     | ------------------------------------------------------------
+2025-12-05 10:23:01 | INFO     |   Processing control group...
+2025-12-05 10:23:01 | INFO     |     Samples: 54
+2025-12-05 10:23:01 | INFO     |   Computing 8141 species × 253 metabolites = 2,059,673 correlations
+2025-12-05 10:23:01 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 10:23:40 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 10:23:45 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 10:24:18 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 10:24:24 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 10:24:57 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 10:25:05 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 10:25:36 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 10:25:46 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 10:26:16 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 10:26:23 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 10:26:25 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 10:26:29 | INFO     |   Computed 2,059,673 raw associations
+2025-12-05 10:26:29 | INFO     |   Applying FDR correction...
+2025-12-05 10:26:29 | INFO     |   Significant associations (FDR < 0.1): 20,715 (1.01%)
+2025-12-05 10:26:29 | INFO     |     Positive: 9,395 (45.4%), Negative: 11,320 (54.6%)
+2025-12-05 10:26:29 | INFO     |     Mean |ρ|: 0.486
+2025-12-05 10:26:30 | INFO     |   Building network with 20,715 edges (|ρ| ≥ 0.3)
+2025-12-05 10:26:31 | INFO     |   Network: 5119 nodes (4878 species, 241 metabolites), 20715 edges
+2025-12-05 10:26:31 | INFO     |     Positive edges: 9395 (45.4%)
+2025-12-05 10:26:31 | INFO     |     Negative edges: 11320 (54.6%)
+2025-12-05 10:26:31 | INFO     |     Density: 0.0016
+2025-12-05 10:26:31 | INFO     |     Connected components: 8
+2025-12-05 10:26:32 | INFO     |     Largest component: 5089 nodes, 20692 edges
+2025-12-05 10:26:32 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 10:26:32 | INFO     |   Found 23 modules (modularity=0.403)
+2025-12-05 10:26:32 | INFO     |   Filtering to 19 modules with ≥5 nodes
+2025-12-05 10:26:32 | INFO     |   Module summary:
+2025-12-05 10:26:32 | INFO     |     Avg nodes per module: 267.2
+2025-12-05 10:26:32 | INFO     |     Avg species per module: 255.1
+2025-12-05 10:26:32 | INFO     |     Avg metabolites per module: 12.1
+2025-12-05 10:26:32 | INFO     |   Identifying keystone species...
+2025-12-05 10:26:32 | INFO     |   Computing centrality metrics for 4856 species...
+2025-12-05 10:26:37 | INFO     |   Identified 537 top keystone species (score ≥ 0.002)
+2025-12-05 10:26:37 | INFO     |     Mean keystone score: 0.001
+2025-12-05 10:26:37 | INFO     | ------------------------------------------------------------
+2025-12-05 10:26:37 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-05 10:26:37 | INFO     | ------------------------------------------------------------
+2025-12-05 10:26:37 | INFO     |   Processing disease group...
+2025-12-05 10:26:37 | INFO     |     Samples: 42
+2025-12-05 10:26:37 | INFO     |   Computing 8141 species × 253 metabolites = 2,059,673 correlations
+2025-12-05 10:26:37 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 10:27:15 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 10:27:23 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 10:27:52 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 10:28:00 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 10:28:29 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 10:28:40 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 10:29:12 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 10:29:26 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 10:29:54 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 10:29:59 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 10:30:04 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 10:30:08 | INFO     |   Computed 2,043,391 raw associations
+2025-12-05 10:30:08 | INFO     |   Applying FDR correction...
+2025-12-05 10:30:08 | INFO     |   Significant associations (FDR < 0.1): 4,514 (0.22%)
+2025-12-05 10:30:08 | INFO     |     Positive: 1,867 (41.4%), Negative: 2,647 (58.6%)
+2025-12-05 10:30:08 | INFO     |     Mean |ρ|: 0.582
+2025-12-05 10:30:09 | INFO     |   Building network with 4,514 edges (|ρ| ≥ 0.3)
+2025-12-05 10:30:09 | INFO     |   Network: 1805 nodes (1643 species, 162 metabolites), 4514 edges
+2025-12-05 10:30:09 | INFO     |     Positive edges: 1867 (41.4%)
+2025-12-05 10:30:09 | INFO     |     Negative edges: 2647 (58.6%)
+2025-12-05 10:30:09 | INFO     |     Density: 0.0028
+2025-12-05 10:30:09 | INFO     |     Connected components: 41
+2025-12-05 10:30:09 | INFO     |     Largest component: 1690 nodes, 4439 edges
+2025-12-05 10:30:09 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 10:30:09 | INFO     |   Found 19 modules (modularity=0.461)
+2025-12-05 10:30:09 | INFO     |   Filtering to 16 modules with ≥5 nodes
+2025-12-05 10:30:09 | INFO     |   Module summary:
+2025-12-05 10:30:09 | INFO     |     Avg nodes per module: 104.9
+2025-12-05 10:30:09 | INFO     |     Avg species per module: 97.8
+2025-12-05 10:30:09 | INFO     |     Avg metabolites per module: 7.1
+2025-12-05 10:30:09 | INFO     |   Identifying keystone species...
+2025-12-05 10:30:09 | INFO     |   Computing centrality metrics for 1573 species...
+2025-12-05 10:30:10 | INFO     |   Identified 192 top keystone species (score ≥ 0.004)
+2025-12-05 10:30:10 | INFO     |     Mean keystone score: 0.002
+2025-12-05 10:30:10 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:10 | INFO     |  Phase 12: Differential Analysis
+2025-12-05 10:30:10 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:11 | INFO     |   Depleted in disease: 170 species
+2025-12-05 10:30:11 | INFO     |   Enriched in disease: 530 species
+2025-12-05 10:30:11 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:11 | INFO     |  Phase 13: Save Results
+2025-12-05 10:30:11 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:12 | INFO     |   Saved differential analysis results
+2025-12-05 10:30:12 | INFO     | ✓ Dataset completed in 433.2s
+2025-12-05 10:30:12 | INFO     | ================================================================================
+2025-12-05 10:30:12 | INFO     |   DATASET 3/6: FRANZOSA_IBD_2019
+2025-12-05 10:30:12 | INFO     | ================================================================================
+2025-12-05 10:30:12 | INFO     |   Disease: Inflammatory Bowel Disease
+2025-12-05 10:30:12 | INFO     |   Control groups: ['Control']
+2025-12-05 10:30:12 | INFO     |   Disease groups: ['CD', 'UC']
+2025-12-05 10:30:12 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:12 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-05 10:30:12 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:20 | INFO     |   Loaded microbiome: (220, 55882)
+2025-12-05 10:30:21 | INFO     |   Loaded metabolites: (220, 8848)
+2025-12-05 10:30:21 | INFO     |   Loaded metadata: (220, 12)
+2025-12-05 10:30:26 | INFO     |   Common samples: 220
+2025-12-05 10:30:26 | INFO     |   Data type: shotgun
+2025-12-05 10:30:26 | INFO     |   Stratified samples: 56 control, 164 disease
+2025-12-05 10:30:26 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:26 | INFO     |  Phase 2: Filter Features
+2025-12-05 10:30:26 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:26 | INFO     |   Applying dataset-specific filters: Untargeted LC-MS with 8,848 features causes 30x more correlations than other datasets
+2025-12-05 10:30:27 | INFO     |     Species: 55882 → 9797 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-05 10:30:28 | INFO     |     Metabolites: 8848 → 8847 (missing<=50%, prevalence>=15%)
+2025-12-05 10:30:28 | INFO     |   Reduced correlation tests from 494,443,936 to 86,674,059 (82.5% reduction)
+2025-12-05 10:30:28 | DEBUG    |   Cleared raw data from memory
+2025-12-05 10:30:28 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:28 | INFO     |  Phase 3: Transform Data
+2025-12-05 10:30:28 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:28 | INFO     |   Transforming data...
+2025-12-05 10:30:28 | DEBUG    |     Standardized 9797 species names
+2025-12-05 10:30:28 | INFO     |     CLR transform: mean=0.000, std=0.916
+2025-12-05 10:30:28 | DEBUG    |     No missing values to impute
+2025-12-05 10:30:28 | INFO     |     Z-score: mean=-0.000, std=1.002
+2025-12-05 10:30:28 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:28 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-05 10:30:28 | INFO     | ------------------------------------------------------------
+2025-12-05 10:30:28 | INFO     |   Processing control group...
+2025-12-05 10:30:28 | INFO     |     Samples: 56
+2025-12-05 10:30:28 | INFO     |   Computing 9797 species × 8847 metabolites = 86,674,059 correlations
+2025-12-05 10:30:28 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 10:57:12 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 10:57:28 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 11:34:51 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 11:35:28 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 12:17:23 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 12:18:10 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 12:47:44 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 12:48:22 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 13:13:22 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 13:13:48 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 13:31:05 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 13:32:51 | INFO     |   Computed 86,145,021 raw associations
+2025-12-05 13:32:51 | INFO     |   Applying FDR correction...
+2025-12-05 13:33:21 | INFO     |   Significant associations (FDR < 0.1): 6,349,718 (7.37%)
+2025-12-05 13:33:21 | INFO     |     Positive: 2,962,988 (46.7%), Negative: 3,386,730 (53.3%)
+2025-12-05 13:33:21 | INFO     |     Mean |ρ|: 0.433
+2025-12-05 13:33:36 | INFO     |   Building network with 6,349,718 edges (|ρ| ≥ 0.3)
+2025-12-05 13:39:08 | INFO     |   Network: 18547 nodes (9797 species, 8750 metabolites), 6349718 edges
+2025-12-05 13:39:08 | INFO     |     Positive edges: 2962988 (46.7%)
+2025-12-05 13:39:08 | INFO     |     Negative edges: 3386730 (53.3%)
+2025-12-05 13:39:08 | INFO     |     Density: 0.0369
+2025-12-05 13:39:08 | INFO     |     Connected components: 1
+2025-12-05 13:39:09 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 13:40:36 | INFO     |   Found 4 modules (modularity=0.264)
+2025-12-05 13:41:25 | INFO     |   Module summary:
+2025-12-05 13:41:25 | INFO     |     Avg nodes per module: 4636.8
+2025-12-05 13:41:25 | INFO     |     Avg species per module: 2449.2
+2025-12-05 13:41:25 | INFO     |     Avg metabolites per module: 2187.5
+2025-12-05 13:41:25 | INFO     |   Identifying keystone species...
+2025-12-05 13:41:25 | INFO     |   Computing centrality metrics for 9797 species...
+2025-12-05 13:41:52 | INFO     |   Identified 982 top keystone species (score ≥ 0.084)
+2025-12-05 13:41:52 | INFO     |     Mean keystone score: 0.035
+2025-12-05 13:41:52 | INFO     | ------------------------------------------------------------
+2025-12-05 13:41:52 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-05 13:41:52 | INFO     | ------------------------------------------------------------
+2025-12-05 13:41:52 | INFO     |   Processing disease group...
+2025-12-05 13:41:52 | INFO     |     Samples: 164
+2025-12-05 13:41:52 | INFO     |   Computing 9797 species × 8847 metabolites = 86,674,059 correlations
+2025-12-05 13:41:52 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-05 14:16:43 | INFO     |     Progress: 10/101 chunks completed
+2025-12-05 14:17:10 | INFO     |     Progress: 20/101 chunks completed
+2025-12-05 14:53:06 | INFO     |     Progress: 30/101 chunks completed
+2025-12-05 14:54:00 | INFO     |     Progress: 40/101 chunks completed
+2025-12-05 15:22:23 | INFO     |     Progress: 50/101 chunks completed
+2025-12-05 15:23:04 | INFO     |     Progress: 60/101 chunks completed
+2025-12-05 15:49:50 | INFO     |     Progress: 70/101 chunks completed
+2025-12-05 15:50:33 | INFO     |     Progress: 80/101 chunks completed
+2025-12-05 16:17:20 | INFO     |     Progress: 90/101 chunks completed
+2025-12-05 16:18:07 | INFO     |     Progress: 100/101 chunks completed
+2025-12-05 16:45:41 | INFO     |     Progress: 101/101 chunks completed
+2025-12-05 16:47:28 | INFO     |   Computed 86,674,059 raw associations
+2025-12-05 16:47:28 | INFO     |   Applying FDR correction...
+2025-12-05 16:49:17 | INFO     |   Significant associations (FDR < 0.1): 35,345,257 (40.78%)
+2025-12-05 16:49:17 | INFO     |     Positive: 14,818,222 (41.9%), Negative: 20,527,035 (58.1%)
+2025-12-05 16:49:17 | INFO     |     Mean |ρ|: 0.281
+2025-12-05 16:49:34 | INFO     |   Building network with 12,252,458 edges (|ρ| ≥ 0.3)
+2025-12-05 17:00:38 | INFO     |   Network: 18230 nodes (9710 species, 8520 metabolites), 12252458 edges
+2025-12-05 17:00:38 | INFO     |     Positive edges: 4314202 (35.2%)
+2025-12-05 17:00:38 | INFO     |     Negative edges: 7938256 (64.8%)
+2025-12-05 17:00:38 | INFO     |     Density: 0.0737
+2025-12-05 17:00:38 | INFO     |     Connected components: 2
+2025-12-05 17:03:04 | INFO     |     Largest component: 18228 nodes, 12252457 edges
+2025-12-05 17:03:07 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-05 17:08:48 | INFO     |   Found 7 modules (modularity=0.112)
+2025-12-05 17:10:19 | INFO     |   Filtering to 5 modules with ≥5 nodes
+2025-12-05 17:10:19 | INFO     |   Module summary:
+2025-12-05 17:10:19 | INFO     |     Avg nodes per module: 3644.6
+2025-12-05 17:10:19 | INFO     |     Avg species per module: 1941.4
+2025-12-05 17:10:19 | INFO     |     Avg metabolites per module: 1703.2
+2025-12-05 17:10:19 | INFO     |   Identifying keystone species...
+2025-12-05 17:10:19 | INFO     |   Computing centrality metrics for 9709 species...
+2025-12-05 17:10:58 | INFO     |   Identified 974 top keystone species (score ≥ 0.170)
+2025-12-05 17:10:58 | INFO     |     Mean keystone score: 0.069
+2025-12-05 17:10:58 | INFO     | ------------------------------------------------------------
+2025-12-05 17:10:58 | INFO     |  Phase 12: Differential Analysis
+2025-12-05 17:10:58 | INFO     | ------------------------------------------------------------
+2025-12-05 21:15:06 | INFO     |   Depleted in disease: 2508 species
+2025-12-05 21:15:06 | INFO     |   Enriched in disease: 3964 species
+2025-12-05 21:15:06 | INFO     | ------------------------------------------------------------
+2025-12-05 21:15:06 | INFO     |  Phase 13: Save Results
+2025-12-05 21:15:06 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:01 | INFO     |   Saved differential analysis results
+2025-12-05 21:38:01 | INFO     | ✓ Dataset completed in 40068.8s
+2025-12-05 21:38:01 | INFO     | ================================================================================
+2025-12-05 21:38:01 | INFO     |   DATASET 4/6: iHMP_IBDMDB_2019
+2025-12-05 21:38:01 | INFO     | ================================================================================
+2025-12-05 21:38:01 | INFO     |   Disease: Inflammatory Bowel Disease
+2025-12-05 21:38:01 | INFO     |   Control groups: ['nonIBD']
+2025-12-05 21:38:01 | INFO     |   Disease groups: ['CD', 'UC']
+2025-12-05 21:38:01 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:01 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-05 21:38:01 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:05 | INFO     |   Loaded microbiome: (382, 42871)
+2025-12-05 21:38:12 | INFO     |   Loaded metabolites: (382, 81867)
+2025-12-05 21:38:12 | INFO     |   Loaded metadata: (382, 23)
+2025-12-05 21:38:12 | INFO     |   Common samples: 382
+2025-12-05 21:38:12 | INFO     |   Data type: shotgun
+2025-12-05 21:38:12 | INFO     |   Stratified samples: 104 control, 278 disease
+2025-12-05 21:38:12 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:12 | INFO     |  Phase 2: Filter Features
+2025-12-05 21:38:12 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:12 | INFO     |   Applying dataset-specific filters: Also uses untargeted LC-MS with very high dimensionality
+2025-12-05 21:38:13 | INFO     |     Species: 42871 → 7117 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-05 21:38:58 | INFO     |     Metabolites: 81867 → 50481 (missing<=50%, prevalence>=15%)
+2025-12-05 21:38:58 | INFO     |   Reduced correlation tests from 3,509,720,157 to 359,273,277 (89.8% reduction)
+2025-12-05 21:38:58 | DEBUG    |   Cleared raw data from memory
+2025-12-05 21:38:58 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:58 | INFO     |  Phase 3: Transform Data
+2025-12-05 21:38:58 | INFO     | ------------------------------------------------------------
+2025-12-05 21:38:58 | INFO     |   Transforming data...
+2025-12-05 21:38:58 | DEBUG    |     Standardized 7117 species names
+2025-12-05 21:38:58 | INFO     |     CLR transform: mean=0.000, std=0.927
+2025-12-05 21:41:25 | INFO     |     Imputed 2839838 missing values (KNN, k=5)
+2025-12-05 21:41:27 | INFO     |     Z-score: mean=0.000, std=1.001
+2025-12-05 21:41:27 | INFO     | ------------------------------------------------------------
+2025-12-05 21:41:27 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-05 21:41:27 | INFO     | ------------------------------------------------------------
+2025-12-05 21:41:27 | INFO     |   Processing control group...
+2025-12-05 21:41:27 | INFO     |     Samples: 104
+2025-12-05 21:41:27 | INFO     |   Computing 7117 species × 50481 metabolites = 359,273,277 correlations
+2025-12-05 21:41:27 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-06 00:18:01 | INFO     |     Progress: 10/101 chunks completed
+2025-12-06 00:19:43 | INFO     |     Progress: 20/101 chunks completed
+2025-12-06 02:44:09 | INFO     |     Progress: 30/101 chunks completed
+2025-12-06 02:46:37 | INFO     |     Progress: 40/101 chunks completed
+2025-12-06 05:00:29 | INFO     |     Progress: 50/101 chunks completed
+2025-12-06 05:04:18 | INFO     |     Progress: 60/101 chunks completed
+2025-12-06 07:16:20 | INFO     |     Progress: 70/101 chunks completed
+2025-12-06 07:18:54 | INFO     |     Progress: 80/101 chunks completed
+2025-12-06 09:34:38 | INFO     |     Progress: 90/101 chunks completed
+2025-12-06 09:37:59 | INFO     |     Progress: 100/101 chunks completed
+2025-12-06 09:57:58 | INFO     |     Progress: 101/101 chunks completed
+2025-12-06 10:10:14 | INFO     |   Computed 359,273,277 raw associations
+2025-12-06 10:10:14 | INFO     |   Applying FDR correction...
+2025-12-06 10:13:13 | INFO     |   Significant associations (FDR < 0.1): 3,976,822 (1.11%)
+2025-12-06 10:13:13 | INFO     |     Positive: 2,052,899 (51.6%), Negative: 1,923,923 (48.4%)
+2025-12-06 10:13:13 | INFO     |     Mean |ρ|: 0.354
+2025-12-06 10:15:41 | INFO     |   Building network with 3,976,822 edges (|ρ| ≥ 0.3)
+2025-12-06 10:19:50 | INFO     |   Network: 56965 nodes (7117 species, 49848 metabolites), 3976822 edges
+2025-12-06 10:19:50 | INFO     |     Positive edges: 2052899 (51.6%)
+2025-12-06 10:19:50 | INFO     |     Negative edges: 1923923 (48.4%)
+2025-12-06 10:19:50 | INFO     |     Density: 0.0025
+2025-12-06 10:19:50 | INFO     |     Connected components: 1
+2025-12-06 10:19:51 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 10:22:07 | INFO     |   Found 4 modules (modularity=0.365)
+2025-12-06 10:22:45 | INFO     |   Module summary:
+2025-12-06 10:22:45 | INFO     |     Avg nodes per module: 14241.2
+2025-12-06 10:22:45 | INFO     |     Avg species per module: 1779.2
+2025-12-06 10:22:45 | INFO     |     Avg metabolites per module: 12462.0
+2025-12-06 10:22:45 | INFO     |   Identifying keystone species...
+2025-12-06 10:22:45 | INFO     |   Computing centrality metrics for 7117 species...
+2025-12-06 10:24:22 | INFO     |   Identified 712 top keystone species (score ≥ 0.022)
+2025-12-06 10:24:22 | INFO     |     Mean keystone score: 0.010
+2025-12-06 10:24:22 | INFO     | ------------------------------------------------------------
+2025-12-06 10:24:22 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-06 10:24:22 | INFO     | ------------------------------------------------------------
+2025-12-06 10:24:22 | INFO     |   Processing disease group...
+2025-12-06 10:24:22 | INFO     |     Samples: 278
+2025-12-06 10:24:22 | INFO     |   Computing 7117 species × 50481 metabolites = 359,273,277 correlations
+2025-12-06 10:24:22 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-06 12:33:00 | INFO     |     Progress: 10/101 chunks completed
+2025-12-06 12:34:50 | INFO     |     Progress: 20/101 chunks completed
+2025-12-06 14:26:16 | INFO     |     Progress: 30/101 chunks completed
+2025-12-06 14:29:28 | INFO     |     Progress: 40/101 chunks completed
+2025-12-06 16:42:49 | INFO     |     Progress: 50/101 chunks completed
+2025-12-06 16:46:12 | INFO     |     Progress: 60/101 chunks completed
+2025-12-06 19:13:41 | INFO     |     Progress: 70/101 chunks completed
+2025-12-06 19:16:56 | INFO     |     Progress: 80/101 chunks completed
+2025-12-06 21:44:23 | INFO     |     Progress: 90/101 chunks completed
+2025-12-06 21:46:44 | INFO     |     Progress: 100/101 chunks completed
+2025-12-06 22:02:06 | INFO     |     Progress: 101/101 chunks completed
+2025-12-06 22:26:58 | INFO     |   Computed 359,273,277 raw associations
+2025-12-06 22:26:58 | INFO     |   Applying FDR correction...
+2025-12-06 22:36:33 | INFO     |   Significant associations (FDR < 0.1): 31,374,809 (8.73%)
+2025-12-06 22:36:34 | INFO     |     Positive: 15,683,612 (50.0%), Negative: 15,691,197 (50.0%)
+2025-12-06 22:36:34 | INFO     |     Mean |ρ|: 0.200
+2025-12-06 22:41:33 | INFO     |   Building network with 877,725 edges (|ρ| ≥ 0.3)
+2025-12-06 22:42:48 | INFO     |   Network: 23335 nodes (6084 species, 17251 metabolites), 877725 edges
+2025-12-06 22:42:48 | INFO     |     Positive edges: 483768 (55.1%)
+2025-12-06 22:42:48 | INFO     |     Negative edges: 393957 (44.9%)
+2025-12-06 22:42:48 | INFO     |     Density: 0.0032
+2025-12-06 22:42:48 | INFO     |     Connected components: 121
+2025-12-06 22:43:02 | INFO     |     Largest component: 23078 nodes, 877588 edges
+2025-12-06 22:43:02 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 22:43:48 | INFO     |   Found 24 modules (modularity=0.334)
+2025-12-06 22:44:02 | INFO     |   Filtering to 16 modules with ≥5 nodes
+2025-12-06 22:44:02 | INFO     |   Module summary:
+2025-12-06 22:44:02 | INFO     |     Avg nodes per module: 1440.7
+2025-12-06 22:44:02 | INFO     |     Avg species per module: 372.1
+2025-12-06 22:44:02 | INFO     |     Avg metabolites per module: 1068.6
+2025-12-06 22:44:02 | INFO     |   Identifying keystone species...
+2025-12-06 22:44:02 | INFO     |   Computing centrality metrics for 5963 species...
+2025-12-06 22:44:39 | INFO     |   Identified 598 top keystone species (score ≥ 0.022)
+2025-12-06 22:44:39 | INFO     |     Mean keystone score: 0.006
+2025-12-06 22:44:39 | INFO     | ------------------------------------------------------------
+2025-12-06 22:44:39 | INFO     |  Phase 12: Differential Analysis
+2025-12-06 22:44:39 | INFO     | ------------------------------------------------------------
+2025-12-06 23:24:37 | INFO     |   Depleted in disease: 3992 species
+2025-12-06 23:24:37 | INFO     |   Enriched in disease: 553 species
+2025-12-06 23:24:37 | INFO     | ------------------------------------------------------------
+2025-12-06 23:24:37 | INFO     |  Phase 13: Save Results
+2025-12-06 23:24:37 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:41 | INFO     |   Saved differential analysis results
+2025-12-06 23:35:41 | INFO     | ✓ Dataset completed in 93459.5s
+2025-12-06 23:35:41 | INFO     | ================================================================================
+2025-12-06 23:35:41 | INFO     |   DATASET 5/6: MARS_IBS_2020
+2025-12-06 23:35:41 | INFO     | ================================================================================
+2025-12-06 23:35:41 | INFO     |   Disease: Irritable Bowel Syndrome
+2025-12-06 23:35:41 | INFO     |   Control groups: ['H']
+2025-12-06 23:35:41 | INFO     |   Disease groups: ['C', 'D']
+2025-12-06 23:35:41 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:41 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-06 23:35:41 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:42 | INFO     |   Loaded microbiome: (444, 11513)
+2025-12-06 23:35:42 | INFO     |   Loaded metabolites: (444, 43)
+2025-12-06 23:35:42 | INFO     |   Loaded metadata: (444, 24)
+2025-12-06 23:35:42 | INFO     |   Common samples: 444
+2025-12-06 23:35:42 | INFO     |   Data type: shotgun
+2025-12-06 23:35:42 | INFO     |   Stratified samples: 139 control, 305 disease
+2025-12-06 23:35:42 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:42 | INFO     |  Phase 2: Filter Features
+2025-12-06 23:35:42 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:42 | INFO     |     Species: 11513 → 3195 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-06 23:35:42 | INFO     |     Metabolites: 43 → 39 (missing<=50%, prevalence>=15%)
+2025-12-06 23:35:42 | INFO     |   Reduced correlation tests from 495,059 to 124,605 (74.8% reduction)
+2025-12-06 23:35:42 | DEBUG    |   Cleared raw data from memory
+2025-12-06 23:35:42 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:42 | INFO     |  Phase 3: Transform Data
+2025-12-06 23:35:42 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:42 | INFO     |   Transforming data...
+2025-12-06 23:35:42 | DEBUG    |     Standardized 3195 species names
+2025-12-06 23:35:42 | INFO     |     CLR transform: mean=0.000, std=1.579
+2025-12-06 23:35:43 | INFO     |     Imputed 2508 missing values (KNN, k=5)
+2025-12-06 23:35:43 | INFO     |     Z-score: mean=0.000, std=1.001
+2025-12-06 23:35:43 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:43 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-06 23:35:43 | INFO     | ------------------------------------------------------------
+2025-12-06 23:35:43 | INFO     |   Processing control group...
+2025-12-06 23:35:43 | INFO     |     Samples: 139
+2025-12-06 23:35:43 | INFO     |   Computing 3195 species × 39 metabolites = 124,605 correlations
+2025-12-06 23:35:43 | INFO     |   Processing 104 chunks with 20 workers
+2025-12-06 23:37:19 | INFO     |     Progress: 10/104 chunks completed
+2025-12-06 23:37:20 | INFO     |     Progress: 20/104 chunks completed
+2025-12-06 23:37:21 | INFO     |     Progress: 30/104 chunks completed
+2025-12-06 23:37:22 | INFO     |     Progress: 40/104 chunks completed
+2025-12-06 23:37:23 | INFO     |     Progress: 50/104 chunks completed
+2025-12-06 23:37:25 | INFO     |     Progress: 60/104 chunks completed
+2025-12-06 23:37:26 | INFO     |     Progress: 70/104 chunks completed
+2025-12-06 23:37:28 | INFO     |     Progress: 80/104 chunks completed
+2025-12-06 23:37:28 | INFO     |     Progress: 90/104 chunks completed
+2025-12-06 23:37:30 | INFO     |     Progress: 100/104 chunks completed
+2025-12-06 23:37:30 | INFO     |     Progress: 104/104 chunks completed
+2025-12-06 23:37:37 | INFO     |   Computed 124,605 raw associations
+2025-12-06 23:37:37 | INFO     |   Applying FDR correction...
+2025-12-06 23:37:37 | INFO     |   Significant associations (FDR < 0.1): 6,729 (5.40%)
+2025-12-06 23:37:37 | INFO     |     Positive: 3,277 (48.7%), Negative: 3,452 (51.3%)
+2025-12-06 23:37:37 | INFO     |     Mean |ρ|: 0.284
+2025-12-06 23:37:37 | INFO     |   Building network with 1,922 edges (|ρ| ≥ 0.3)
+2025-12-06 23:37:38 | INFO     |   Network: 1162 nodes (1128 species, 34 metabolites), 1922 edges
+2025-12-06 23:37:38 | INFO     |     Positive edges: 981 (51.0%)
+2025-12-06 23:37:38 | INFO     |     Negative edges: 941 (49.0%)
+2025-12-06 23:37:38 | INFO     |     Density: 0.0028
+2025-12-06 23:37:38 | INFO     |     Connected components: 2
+2025-12-06 23:37:38 | INFO     |     Largest component: 1159 nodes, 1920 edges
+2025-12-06 23:37:38 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 23:37:38 | INFO     |   Found 11 modules (modularity=0.553)
+2025-12-06 23:37:38 | INFO     |   Module summary:
+2025-12-06 23:37:38 | INFO     |     Avg nodes per module: 105.4
+2025-12-06 23:37:38 | INFO     |     Avg species per module: 102.4
+2025-12-06 23:37:38 | INFO     |     Avg metabolites per module: 3.0
+2025-12-06 23:37:38 | INFO     |   Identifying keystone species...
+2025-12-06 23:37:38 | INFO     |   Computing centrality metrics for 1126 species...
+2025-12-06 23:37:38 | INFO     |   Identified 194 top keystone species (score ≥ 0.003)
+2025-12-06 23:37:38 | INFO     |     Mean keystone score: 0.001
+2025-12-06 23:37:38 | INFO     | ------------------------------------------------------------
+2025-12-06 23:37:38 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-06 23:37:38 | INFO     | ------------------------------------------------------------
+2025-12-06 23:37:38 | INFO     |   Processing disease group...
+2025-12-06 23:37:38 | INFO     |     Samples: 305
+2025-12-06 23:37:38 | INFO     |   Computing 3195 species × 39 metabolites = 124,605 correlations
+2025-12-06 23:37:38 | INFO     |   Processing 104 chunks with 20 workers
+2025-12-06 23:39:15 | INFO     |     Progress: 10/104 chunks completed
+2025-12-06 23:39:15 | INFO     |     Progress: 20/104 chunks completed
+2025-12-06 23:39:17 | INFO     |     Progress: 30/104 chunks completed
+2025-12-06 23:39:18 | INFO     |     Progress: 40/104 chunks completed
+2025-12-06 23:39:19 | INFO     |     Progress: 50/104 chunks completed
+2025-12-06 23:39:20 | INFO     |     Progress: 60/104 chunks completed
+2025-12-06 23:39:22 | INFO     |     Progress: 70/104 chunks completed
+2025-12-06 23:39:23 | INFO     |     Progress: 80/104 chunks completed
+2025-12-06 23:39:24 | INFO     |     Progress: 90/104 chunks completed
+2025-12-06 23:39:25 | INFO     |     Progress: 100/104 chunks completed
+2025-12-06 23:39:26 | INFO     |     Progress: 104/104 chunks completed
+2025-12-06 23:39:32 | INFO     |   Computed 124,605 raw associations
+2025-12-06 23:39:32 | INFO     |   Applying FDR correction...
+2025-12-06 23:39:32 | INFO     |   Significant associations (FDR < 0.1): 39,676 (31.84%)
+2025-12-06 23:39:32 | INFO     |     Positive: 24,978 (63.0%), Negative: 14,698 (37.0%)
+2025-12-06 23:39:32 | INFO     |     Mean |ρ|: 0.190
+2025-12-06 23:39:33 | INFO     |   Building network with 2,143 edges (|ρ| ≥ 0.3)
+2025-12-06 23:39:33 | INFO     |   Network: 763 nodes (733 species, 30 metabolites), 2143 edges
+2025-12-06 23:39:33 | INFO     |     Positive edges: 1225 (57.2%)
+2025-12-06 23:39:33 | INFO     |     Negative edges: 918 (42.8%)
+2025-12-06 23:39:33 | INFO     |     Density: 0.0074
+2025-12-06 23:39:33 | INFO     |     Connected components: 1
+2025-12-06 23:39:33 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 23:39:33 | INFO     |   Found 8 modules (modularity=0.355)
+2025-12-06 23:39:33 | INFO     |   Module summary:
+2025-12-06 23:39:33 | INFO     |     Avg nodes per module: 95.4
+2025-12-06 23:39:33 | INFO     |     Avg species per module: 91.6
+2025-12-06 23:39:33 | INFO     |     Avg metabolites per module: 3.8
+2025-12-06 23:39:33 | INFO     |   Identifying keystone species...
+2025-12-06 23:39:33 | INFO     |   Computing centrality metrics for 733 species...
+2025-12-06 23:39:33 | INFO     |   Identified 91 top keystone species (score ≥ 0.009)
+2025-12-06 23:39:33 | INFO     |     Mean keystone score: 0.004
+2025-12-06 23:39:33 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:33 | INFO     |  Phase 12: Differential Analysis
+2025-12-06 23:39:33 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:33 | INFO     |   Depleted in disease: 4 species
+2025-12-06 23:39:33 | INFO     |   Enriched in disease: 173 species
+2025-12-06 23:39:33 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:33 | INFO     |  Phase 13: Save Results
+2025-12-06 23:39:33 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:34 | INFO     |   Saved differential analysis results
+2025-12-06 23:39:34 | INFO     | ✓ Dataset completed in 233.4s
+2025-12-06 23:39:34 | INFO     | ================================================================================
+2025-12-06 23:39:34 | INFO     |   DATASET 6/6: WANG_ESRD_2020
+2025-12-06 23:39:34 | INFO     | ================================================================================
+2025-12-06 23:39:34 | INFO     |   Disease: End-Stage Renal Disease
+2025-12-06 23:39:34 | INFO     |   Control groups: ['Control']
+2025-12-06 23:39:34 | INFO     |   Disease groups: ['ESRD']
+2025-12-06 23:39:34 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:34 | INFO     |  Phase 1: Load Data & Stratify
+2025-12-06 23:39:34 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:39 | INFO     |   Loaded microbiome: (287, 56961)
+2025-12-06 23:39:39 | INFO     |   Loaded metabolites: (287, 276)
+2025-12-06 23:39:39 | INFO     |   Loaded metadata: (287, 14)
+2025-12-06 23:39:39 | INFO     |   Common samples: 287
+2025-12-06 23:39:39 | INFO     |   Data type: shotgun
+2025-12-06 23:39:39 | INFO     |   Stratified samples: 67 control, 220 disease
+2025-12-06 23:39:39 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:39 | INFO     |  Phase 2: Filter Features
+2025-12-06 23:39:39 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:39 | INFO     |     Species: 56961 → 10870 (prevalence>=10%, abundance>=1.00e-05)
+2025-12-06 23:39:39 | INFO     |     Metabolites: 276 → 276 (missing<=50%, prevalence>=15%)
+2025-12-06 23:39:39 | INFO     |   Reduced correlation tests from 15,721,236 to 3,000,120 (80.9% reduction)
+2025-12-06 23:39:39 | DEBUG    |   Cleared raw data from memory
+2025-12-06 23:39:39 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:39 | INFO     |  Phase 3: Transform Data
+2025-12-06 23:39:39 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:39 | INFO     |   Transforming data...
+2025-12-06 23:39:40 | DEBUG    |     Standardized 10870 species names
+2025-12-06 23:39:40 | INFO     |     CLR transform: mean=0.000, std=0.760
+2025-12-06 23:39:40 | DEBUG    |     No missing values to impute
+2025-12-06 23:39:40 | INFO     |     Z-score: mean=0.000, std=1.002
+2025-12-06 23:39:40 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:40 | INFO     |  Phase 4-7: Process CONTROL Group
+2025-12-06 23:39:40 | INFO     | ------------------------------------------------------------
+2025-12-06 23:39:40 | INFO     |   Processing control group...
+2025-12-06 23:39:40 | INFO     |     Samples: 67
+2025-12-06 23:39:40 | INFO     |   Computing 10870 species × 276 metabolites = 3,000,120 correlations
+2025-12-06 23:39:40 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-06 23:42:05 | INFO     |     Progress: 10/101 chunks completed
+2025-12-06 23:42:09 | INFO     |     Progress: 20/101 chunks completed
+2025-12-06 23:43:05 | INFO     |     Progress: 30/101 chunks completed
+2025-12-06 23:43:13 | INFO     |     Progress: 40/101 chunks completed
+2025-12-06 23:44:05 | INFO     |     Progress: 50/101 chunks completed
+2025-12-06 23:44:11 | INFO     |     Progress: 60/101 chunks completed
+2025-12-06 23:45:08 | INFO     |     Progress: 70/101 chunks completed
+2025-12-06 23:45:14 | INFO     |     Progress: 80/101 chunks completed
+2025-12-06 23:46:07 | INFO     |     Progress: 90/101 chunks completed
+2025-12-06 23:46:13 | INFO     |     Progress: 100/101 chunks completed
+2025-12-06 23:46:40 | INFO     |     Progress: 101/101 chunks completed
+2025-12-06 23:46:51 | INFO     |   Computed 3,000,120 raw associations
+2025-12-06 23:46:51 | INFO     |   Applying FDR correction...
+2025-12-06 23:46:52 | INFO     |   Significant associations (FDR < 0.1): 399,057 (13.30%)
+2025-12-06 23:46:52 | INFO     |     Positive: 97,297 (24.4%), Negative: 301,760 (75.6%)
+2025-12-06 23:46:52 | INFO     |     Mean |ρ|: 0.390
+2025-12-06 23:46:53 | INFO     |   Building network with 399,057 edges (|ρ| ≥ 0.3)
+2025-12-06 23:47:28 | INFO     |   Network: 10590 nodes (10314 species, 276 metabolites), 399057 edges
+2025-12-06 23:47:28 | INFO     |     Positive edges: 97297 (24.4%)
+2025-12-06 23:47:28 | INFO     |     Negative edges: 301760 (75.6%)
+2025-12-06 23:47:28 | INFO     |     Density: 0.0071
+2025-12-06 23:47:28 | INFO     |     Connected components: 1
+2025-12-06 23:47:28 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 23:47:37 | INFO     |   Found 4 modules (modularity=0.177)
+2025-12-06 23:47:41 | INFO     |   Module summary:
+2025-12-06 23:47:41 | INFO     |     Avg nodes per module: 2647.5
+2025-12-06 23:47:41 | INFO     |     Avg species per module: 2578.5
+2025-12-06 23:47:41 | INFO     |     Avg metabolites per module: 69.0
+2025-12-06 23:47:41 | INFO     |   Identifying keystone species...
+2025-12-06 23:47:41 | INFO     |   Computing centrality metrics for 10314 species...
+2025-12-06 23:48:07 | INFO     |   Identified 1052 top keystone species (score ≥ 0.010)
+2025-12-06 23:48:07 | INFO     |     Mean keystone score: 0.004
+2025-12-06 23:48:07 | INFO     | ------------------------------------------------------------
+2025-12-06 23:48:07 | INFO     |  Phase 8-11: Process DISEASE Group
+2025-12-06 23:48:07 | INFO     | ------------------------------------------------------------
+2025-12-06 23:48:07 | INFO     |   Processing disease group...
+2025-12-06 23:48:07 | INFO     |     Samples: 220
+2025-12-06 23:48:07 | INFO     |   Computing 10870 species × 276 metabolites = 3,000,120 correlations
+2025-12-06 23:48:07 | INFO     |   Processing 101 chunks with 20 workers
+2025-12-06 23:50:57 | INFO     |     Progress: 10/101 chunks completed
+2025-12-06 23:51:01 | INFO     |     Progress: 20/101 chunks completed
+2025-12-06 23:52:14 | INFO     |     Progress: 30/101 chunks completed
+2025-12-06 23:52:23 | INFO     |     Progress: 40/101 chunks completed
+2025-12-06 23:53:32 | INFO     |     Progress: 50/101 chunks completed
+2025-12-06 23:53:41 | INFO     |     Progress: 60/101 chunks completed
+2025-12-06 23:54:49 | INFO     |     Progress: 70/101 chunks completed
+2025-12-06 23:54:59 | INFO     |     Progress: 80/101 chunks completed
+2025-12-06 23:56:06 | INFO     |     Progress: 90/101 chunks completed
+2025-12-06 23:56:22 | INFO     |     Progress: 100/101 chunks completed
+2025-12-06 23:56:39 | INFO     |     Progress: 101/101 chunks completed
+2025-12-06 23:56:56 | INFO     |   Computed 3,000,120 raw associations
+2025-12-06 23:56:56 | INFO     |   Applying FDR correction...
+2025-12-06 23:56:57 | INFO     |   Significant associations (FDR < 0.1): 828,826 (27.63%)
+2025-12-06 23:56:57 | INFO     |     Positive: 251,309 (30.3%), Negative: 577,517 (69.7%)
+2025-12-06 23:56:57 | INFO     |     Mean |ρ|: 0.224
+2025-12-06 23:56:58 | INFO     |   Building network with 107,667 edges (|ρ| ≥ 0.3)
+2025-12-06 23:57:08 | INFO     |   Network: 6069 nodes (5843 species, 226 metabolites), 107667 edges
+2025-12-06 23:57:08 | INFO     |     Positive edges: 36667 (34.1%)
+2025-12-06 23:57:08 | INFO     |     Negative edges: 71000 (65.9%)
+2025-12-06 23:57:08 | INFO     |     Density: 0.0058
+2025-12-06 23:57:08 | INFO     |     Connected components: 6
+2025-12-06 23:57:09 | INFO     |     Largest component: 6058 nodes, 107661 edges
+2025-12-06 23:57:10 | INFO     |   Detecting modules with Leiden algorithm (resolution=1.0)
+2025-12-06 23:57:12 | INFO     |   Found 9 modules (modularity=0.209)
+2025-12-06 23:57:14 | INFO     |   Filtering to 6 modules with ≥5 nodes
+2025-12-06 23:57:14 | INFO     |   Module summary:
+2025-12-06 23:57:14 | INFO     |     Avg nodes per module: 1008.2
+2025-12-06 23:57:14 | INFO     |     Avg species per module: 971.8
+2025-12-06 23:57:14 | INFO     |     Avg metabolites per module: 36.3
+2025-12-06 23:57:14 | INFO     |   Identifying keystone species...
+2025-12-06 23:57:14 | INFO     |   Computing centrality metrics for 5837 species...
+2025-12-06 23:57:24 | INFO     |   Identified 597 top keystone species (score ≥ 0.008)
+2025-12-06 23:57:24 | INFO     |     Mean keystone score: 0.003
+2025-12-06 23:57:24 | INFO     | ------------------------------------------------------------
+2025-12-06 23:57:24 | INFO     |  Phase 12: Differential Analysis
+2025-12-06 23:57:24 | INFO     | ------------------------------------------------------------
+2025-12-07 00:01:40 | INFO     |   Depleted in disease: 2925 species
+2025-12-07 00:01:40 | INFO     |   Enriched in disease: 605 species
+2025-12-07 00:01:40 | INFO     | ------------------------------------------------------------
+2025-12-07 00:01:40 | INFO     |  Phase 13: Save Results
+2025-12-07 00:01:40 | INFO     | ------------------------------------------------------------
+2025-12-07 00:02:31 | INFO     |   Saved differential analysis results
+2025-12-07 00:02:31 | INFO     | ✓ Dataset completed in 1376.3s
+2025-12-07 00:02:31 | INFO     | ================================================================================
+2025-12-07 00:02:31 | INFO     |   CROSS-STUDY CONVERGENCE ANALYSIS
+2025-12-07 00:02:31 | INFO     | ================================================================================
+2025-12-07 00:02:31 | INFO     | Analyzing CONTROL keystones across studies...
+2025-12-07 00:02:31 | INFO     | Analyzing cross-study convergence across 6 datasets
+2025-12-07 00:02:31 | INFO     |   Found 7981 conserved keystone species (present in ≥3 datasets)
+2025-12-07 00:05:26 | INFO     | Analyzing DISEASE keystones across studies...
+2025-12-07 00:05:26 | INFO     | Analyzing cross-study convergence across 6 datasets
+2025-12-07 00:05:26 | INFO     |   Found 4618 conserved keystone species (present in ≥3 datasets)
+2025-12-07 00:06:43 | INFO     |   Control: 7981 conserved keystones
+2025-12-07 00:06:43 | INFO     |   Disease: 4618 conserved keystones
+2025-12-07 00:06:43 | INFO     |   Found 320 species consistently depleted in disease (≥3 datasets)
+2025-12-07 00:06:43 | INFO     | 
+Top 10 species depleted in disease across studies:
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  oscillospirales;f  acutalibacteraceae;g  uba6857;s  uba6857 sp900555805: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  oscillospirales;f  ruminococcaceae;g  ruminococcus;s  ruminococcus flavefaciens g: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  lachnospirales;f  lachnospiraceae;g  sporofaciens;s  sporofaciens sp000403455: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes;c  bacilli;o  lactobacillales;f  streptococcaceae;g  streptococcus;s  streptococcus oralis bl: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  oscillospirales;f  acutalibacteraceae;g  eubacterium r;s  eubacterium r sp000436835: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes;c  bacilli;o  rf39;f  uba660;g  cag-582;s  cag-582 sp900760845: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  lachnospirales;f  lachnospiraceae;g  acetatifactor;s  acetatifactor sp900766575: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes;c  bacilli;o  lactobacillales;f  streptococcaceae;g  streptococcus;s  streptococcus sp004166885: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes;c  bacilli;o  erysipelotrichales;f  coprobacillaceae;g  erysipelatoclostridium;s  erysipelatoclostridium cocleatum: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     |   d  bacteria;p  firmicutes a;c  clostridia;o  lachnospirales;f  lachnospiraceae;g  rug115;s  rug115 sp902782995: depleted in 4 datasets
+2025-12-07 00:06:43 | INFO     | ================================================================================
+2025-12-07 00:06:43 | INFO     |   PIPELINE EXECUTION SUMMARY
+2025-12-07 00:06:43 | INFO     | ================================================================================
+2025-12-07 00:06:43 | INFO     | Datasets processed: 6/6 successful
+2025-12-07 00:06:43 | INFO     | Total execution time: 136559.0s (2276.0 minutes)
+2025-12-07 00:06:43 | INFO     | 
+2025-12-07 00:06:43 | INFO     | Dataset                          | Status | Species | Metabolites | Associations | Modules | Time    
+2025-12-07 00:06:43 | INFO     | ---------------------------------+--------+---------+-------------+--------------+---------+---------
+2025-12-07 00:06:43 | INFO     | YACHIDA_CRC_2019                 | ✓      | 10325   | 277         | 0            | 0       | 735.2s  
+2025-12-07 00:06:43 | INFO     | ERAWIJANTARI_GASTRIC_CANCER_2020 | ✓      | 8141    | 253         | 0            | 0       | 433.2s  
+2025-12-07 00:06:43 | INFO     | FRANZOSA_IBD_2019                | ✓      | 9797    | 8847        | 0            | 0       | 40068.8s
+2025-12-07 00:06:43 | INFO     | iHMP_IBDMDB_2019                 | ✓      | 7117    | 50481       | 0            | 0       | 93459.5s
+2025-12-07 00:06:43 | INFO     | MARS_IBS_2020                    | ✓      | 3195    | 39          | 0            | 0       | 233.4s  
+2025-12-07 00:06:43 | INFO     | WANG_ESRD_2020                   | ✓      | 10870   | 276         | 0            | 0       | 1376.3s 
+2025-12-07 00:06:43 | INFO     | 
+2025-12-07 00:06:43 | INFO     | 🎉 PIPELINE COMPLETED SUCCESSFULLY
+2025-12-07 00:06:43 | INFO     | Full log: /mnt/gpuws/kardokhk/idea_16/logs/pipeline_20251205_101044.log
+2025-12-07 00:06:43 | INFO     | ================================================================================
+2025-12-07 00:06:43 | INFO     |   DOWNSTREAM ANALYSES
+2025-12-07 00:06:43 | INFO     | ================================================================================
+2025-12-07 00:06:43 | INFO     | ------------------------------------------------------------
+2025-12-07 00:06:43 | INFO     |  Hub Metabolite Analysis
+2025-12-07 00:06:43 | INFO     | ------------------------------------------------------------
+2025-12-07 00:44:11 | INFO     | ✓ Hub metabolite analysis completed in 2248.0s
+2025-12-07 00:44:11 | INFO     | ------------------------------------------------------------
+2025-12-07 00:44:11 | INFO     |  Module Enrichment Analysis
+2025-12-07 00:44:11 | INFO     | ------------------------------------------------------------
+2025-12-07 00:45:28 | INFO     | ✓ Module enrichment analysis completed in 77.0s
+2025-12-07 00:45:28 | INFO     | ------------------------------------------------------------
+2025-12-07 00:45:28 | INFO     |  Cross-Disease Comparison
+2025-12-07 00:45:28 | INFO     | ------------------------------------------------------------
+2025-12-07 00:45:59 | INFO     | ✓ Cross-disease comparison completed in 30.7s
+2025-12-07 00:45:59 | INFO     | ------------------------------------------------------------
+2025-12-07 00:45:59 | INFO     |  Enhanced Hub Metabolite Analysis
+2025-12-07 00:45:59 | INFO     | ------------------------------------------------------------
+2025-12-07 01:07:28 | INFO     | ✓ Enhanced hub metabolite analysis completed in 1289.7s
+2025-12-07 01:07:28 | INFO     | ------------------------------------------------------------
+2025-12-07 01:07:28 | INFO     |  Metabolite Functional Annotation
+2025-12-07 01:07:28 | INFO     | ------------------------------------------------------------
+2025-12-07 01:30:14 | INFO     | ✓ Metabolite annotation completed in 1365.0s
+2025-12-07 01:30:16 | INFO     | ================================================================================
+2025-12-07 01:30:16 | INFO     |   COMPLETE ANALYSIS FINISHED
+2025-12-07 01:30:16 | INFO     | ================================================================================
+2025-12-07 01:30:16 | INFO     | Total execution time: 141571.8s (2359.5 minutes)
+2025-12-07 01:30:16 | INFO     | Core pipeline: 136559.0s
+2025-12-07 01:30:16 | INFO     | Downstream analyses: 5012.8s
+2025-12-07 01:30:16 | INFO     | Results saved to: /mnt/gpuws/kardokhk/idea_16/output/results
+2025-12-07 01:30:16 | INFO     | Logs saved to: /mnt/gpuws/kardokhk/idea_16/logs
